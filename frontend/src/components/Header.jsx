@@ -7,7 +7,7 @@ const Header = () => {
         <h1 className="text-2xl">Where&apos;s Waldo</h1>
       </Link>
       <Link to="/leaderboard">
-        <h1 className="text-2xl">Leaderbord</h1>
+        <h1 className="text-2xl">Leaderboard</h1>
       </Link>
     </div>
   );
