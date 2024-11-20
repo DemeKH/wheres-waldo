@@ -9,7 +9,7 @@ const images = [
 const Home = () => {
   return (
     <>
-      <h1 className="text-center text-3xl font-bold">Choose a Map</h1>
+      <h1 className="text-center text-2xl font-semibold">Choose a Map</h1>
       <div
         className="flex flex-col gap-5 p-5 justify-center items-center 
       lg:flex-row lg:justify-between lg:items-center"
