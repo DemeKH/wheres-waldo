@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
         "Username can only contain letters, numbers, underscores, and hyphens",
     },
   },
-  highscores: {
+  highscore: {
     type: Number,
   },
 });
