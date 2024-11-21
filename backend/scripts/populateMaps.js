@@ -52,7 +52,7 @@ const populateMaps = async () => {
             name: "Zombie",
             imageURL:
               "	https://spy-scout.vercel.app/_next/image?url=%2Fimages%2Fmine-zombie.png&w=64&q=75",
-            location: { x: 511, y: 1150 },
+            location: { x: 511, y: 900 },
           },
         ],
       },
@@ -65,7 +65,7 @@ const populateMaps = async () => {
             name: "Raft Man",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fraft-man.png?alt=media",
-            location: { x: 62, y: 1320 },
+            location: { x: 91, y: 1220 },
           },
           {
             name: "Wizard",
