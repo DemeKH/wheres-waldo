@@ -18,7 +18,7 @@ function Game() {
       if (boxPosition !== undefined) {
         setBoxPosition(undefined);
       } else {
-        setBoxPosition({ x: e.clientX, y: e.clientY });
+        setBoxPosition({ x: e.layerX, y: e.layerY });
       }
     });
   }, [boxPosition]);
