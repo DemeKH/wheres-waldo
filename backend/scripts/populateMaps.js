@@ -34,25 +34,25 @@ const populateMaps = async () => {
             name: "Saitama",
             imageURL:
               "https://spy-scout.vercel.app/_next/image?url=%2Fimages%2Fsaitama-avatar.png&w=64&q=75",
-            location: { x: 655, y: 1655 },
+            location: { x: 655, y: 1725 },
           },
           {
             name: "Luffy",
             imageURL:
               "	https://spy-scout.vercel.app/_next/image?url=%2Fimages%2Fluffy-avatar.png&w=64&q=75",
-            location: { x: 1240, y: 2249 },
+            location: { x: 1240, y: 2319 },
           },
           {
             name: "Guts",
             imageURL:
               "	https://spy-scout.vercel.app/_next/image?url=%2Fimages%2Fguts-avatar.png&w=64&q=75",
-            location: { x: 950, y: 2415 },
+            location: { x: 950, y: 2485 },
           },
           {
             name: "Zombie",
             imageURL:
               "	https://spy-scout.vercel.app/_next/image?url=%2Fimages%2Fmine-zombie.png&w=64&q=75",
-            location: { x: 511, y: 1080 },
+            location: { x: 511, y: 1150 },
           },
         ],
       },
@@ -65,19 +65,19 @@ const populateMaps = async () => {
             name: "Raft Man",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fraft-man.png?alt=media",
-            location: { x: 62, y: 1150 },
+            location: { x: 62, y: 1320 },
           },
           {
             name: "Wizard",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fwizard.png?alt=media",
-            location: { x: 1443, y: 1781 },
+            location: { x: 1443, y: 1850 },
           },
           {
             name: "Dragon",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fdragon.png?alt=media",
-            location: { x: 1267, y: 1140 },
+            location: { x: 1267, y: 1210 },
           },
         ],
       },
@@ -90,19 +90,19 @@ const populateMaps = async () => {
             name: "Robot Sentinel",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-sentinel.141b234b60ab58570fd7.webp",
-            location: { x: 735, y: 1543 },
+            location: { x: 735, y: 1630 },
           },
           {
             name: "Bender",
             imageURL:
               "	https://alejandrovela-dev.github.io/robot-city/static/media/robot-bender.a9e917e7e1331dcdeac6.webp",
-            location: { x: 1197, y: 1260 },
+            location: { x: 1197, y: 1330 },
           },
           {
             name: "Goku",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-thedoofwarrior.6e760ecfca88b77085a2.webp",
-            location: { x: 1248, y: 1712 },
+            location: { x: 1248, y: 1782 },
           },
         ],
       },
