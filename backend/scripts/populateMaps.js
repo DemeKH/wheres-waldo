@@ -90,7 +90,7 @@ const populateMaps = async () => {
             name: "Robot Sentinel",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-sentinel.141b234b60ab58570fd7.webp",
-            location: { x: 735, y: 1630 },
+            location: { x: 735, y: 1615 },
           },
           {
             name: "Bender",
@@ -101,7 +101,7 @@ const populateMaps = async () => {
           {
             name: "Goku",
             imageURL:
-              "https://alejandrovela-dev.github.io/robot-city/static/media/robot-thedoofwarrior.6e760ecfca88b77085a2.webp",
+              "https://alejandrovela-dev.github.io/robot-city/static/media/robot-goku.4b4bde291489d1de33fd.webp",
             location: { x: 1248, y: 1782 },
           },
         ],
