@@ -1,23 +1,19 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
 
 const characterSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  photoURL: { type: String, required: true },
+  imageURL: { type: String, required: true },
   location: {
-    x: { type: Number, required: true }, // X-coordinate in pixels
-    y: { type: Number, required: true }, // Y-coordinate in pixels
+    x: { type: Number, required: true },
+    y: { type: Number, required: true },
   },
 });
 
 const mapSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true],
-  },
-  charachtersToGuess: [characterSchema],
+  name: { type: String, required: true },
+  imageURL: { type: String, required: true },
+  characters: { type: [characterSchema], required: true },
 });
 
 const Map = mongoose.model("Map", mapSchema);
-
 module.exports = Map;

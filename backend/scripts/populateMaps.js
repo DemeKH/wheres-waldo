@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const Map = require("../models/mapModel"); // Adjust path as needed
+const Map = require("../models/mapModel");
 
 dotenv.config();
 
-// Database connection
 const DB = process.env.DB;
 
 mongoose
@@ -33,22 +32,22 @@ const populateMaps = async () => {
         characters: [
           {
             name: "Saitama",
-            photoURL: "https://example.com/characters/waldo.jpg",
+            imageURL: "https://example.com/characters/waldo.jpg",
             location: { x: 345, y: 672 },
           },
           {
             name: "Luffy",
-            photoURL: "https://example.com/characters/wizard.jpg",
+            imageURL: "https://example.com/characters/wizard.jpg",
             location: { x: 123, y: 456 },
           },
           {
             name: "Guts",
-            photoURL: "https://example.com/characters/waldo.jpg",
+            imageURL: "https://example.com/characters/waldo.jpg",
             location: { x: 345, y: 672 },
           },
           {
             name: "Zombie",
-            photoURL: "https://example.com/characters/wizard.jpg",
+            imageURL: "https://example.com/characters/wizard.jpg",
             location: { x: 123, y: 456 },
           },
         ],
@@ -60,19 +59,19 @@ const populateMaps = async () => {
         characters: [
           {
             name: "Raft Man",
-            photoURL:
+            imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/main-robotcity.21aef22c39fb3661f853.webp",
             location: { x: 512, y: 134 },
           },
           {
             name: "Wizard",
-            photoURL:
+            imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fwizard.png?alt=media&token=efbb508b-4cce-432d-920c-50297f9565e6",
             location: { x: 512, y: 134 },
           },
           {
             name: "Dragon",
-            photoURL:
+            imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fwizard.png?alt=media&token=efbb508b-4cce-432d-920c-50297f9565e6",
             location: { x: 512, y: 134 },
           },
