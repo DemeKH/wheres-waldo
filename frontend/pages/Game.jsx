@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import BoxPopup from "../src/components/BoxPopup";
 import HeaderGame from "../src/components/HeaderGame";
+import SaveUser from "../src/components/SaveUser";
 
 function Game() {
   let { id } = useParams();
@@ -29,6 +30,18 @@ function Game() {
     }
   }
 
+  async function handleSave(username) {
+    try {
+      await axiosInstance.post("http://localhost:3000/api/users/create-user", {
+        username,
+        highscore: timeInMS,
+      });
+      console.log("User saved successfully!");
+    } catch (error) {
+      console.error("Error saving user:", error);
+    }
+  }
+
   useEffect(() => {
     const handleClick = (e) => {
       if (boxPosition !== undefined) {
@@ -36,7 +49,6 @@ function Game() {
       } else {
         setBoxPosition({ x: e.layerX, y: e.layerY });
       }
-      console.log(e.layerX, e.layerY);
     };
 
     window.addEventListener("click", handleClick);
@@ -62,14 +74,14 @@ function Game() {
       settimeInMS((prev) => prev + 1000);
     }, 1000);
 
-    if (correctGuesses.length >= 3) {
+    if (correctGuesses.length === map?.characters?.length) {
       clearInterval(intervalID);
     }
 
     return () => {
       clearInterval(intervalID);
     };
-  }, [correctGuesses]);
+  }, [correctGuesses, map.characters]);
 
   return (
     <>
@@ -89,13 +101,16 @@ function Game() {
             alt={`Game ${id} Image`}
           />
         </div>
-        {boxPosition && (
+        {boxPosition && correctGuesses?.length !== map?.characters?.length && (
           <BoxPopup
             boxPosition={boxPosition}
             characters={map.characters}
             guessCharacter={guessCharacter}
             correctGuesses={correctGuesses}
           />
+        )}
+        {correctGuesses?.length === map?.characters?.length && (
+          <SaveUser timeInMS={timeInMS} handleSave={handleSave} />
         )}
       </div>
     </>
