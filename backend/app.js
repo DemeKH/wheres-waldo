@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const mapRouter = require("./routes/mapRouter");
+const userRouter = require("./routes/userRouter");
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ mongoose
     process.exit(1);
   });
 
+app.use("/api/users", userRouter);
 app.use("/api/maps", mapRouter);
 
 app.listen(PORT, () => {
