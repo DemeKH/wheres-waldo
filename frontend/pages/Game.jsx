@@ -41,7 +41,9 @@ function Game() {
           alt={`Game ${id} Image`}
         />
       </div>
-      {boxPosition && <BoxPopup boxPosition={boxPosition} />}
+      {boxPosition && (
+        <BoxPopup boxPosition={boxPosition} characters={map.characters} />
+      )}
     </div>
   );
 }
