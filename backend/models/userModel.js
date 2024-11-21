@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   highscores: {
-    type: [Number],
+    type: Number,
   },
 });
 
