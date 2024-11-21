@@ -27,10 +27,10 @@ const Home = () => {
         {maps.map((map, index) => (
           <Link
             to={`/game/${index + 1}`}
-            key={map.id}
+            key={index}
             className="w-full flex justify-center"
           >
-            <MapItem bgImage={map.imageURL} mapName={map.name} />
+            <MapItem bgImage={map.imageURL} mapName={map.name} key={index} />
           </Link>
         ))}
       </div>
