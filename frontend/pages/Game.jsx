@@ -20,6 +20,7 @@ function Game() {
       } else {
         setBoxPosition({ x: e.layerX, y: e.layerY });
       }
+      console.log(e);
     });
   }, [boxPosition]);
 

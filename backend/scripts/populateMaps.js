@@ -33,22 +33,22 @@ const populateMaps = async () => {
           {
             name: "Saitama",
             imageURL: "https://example.com/characters/waldo.jpg",
-            location: { x: 345, y: 672 },
+            location: { x: 655, y: 1655 },
           },
           {
             name: "Luffy",
             imageURL: "https://example.com/characters/wizard.jpg",
-            location: { x: 123, y: 456 },
+            location: { x: 1240, y: 2249 },
           },
           {
             name: "Guts",
             imageURL: "https://example.com/characters/waldo.jpg",
-            location: { x: 345, y: 672 },
+            location: { x: 950, y: 2415 },
           },
           {
             name: "Zombie",
             imageURL: "https://example.com/characters/wizard.jpg",
-            location: { x: 123, y: 456 },
+            location: { x: 511, y: 1080 },
           },
         ],
       },
@@ -61,19 +61,19 @@ const populateMaps = async () => {
             name: "Raft Man",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/main-robotcity.21aef22c39fb3661f853.webp",
-            location: { x: 512, y: 134 },
+            location: { x: 62, y: 1150 },
           },
           {
             name: "Wizard",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fwizard.png?alt=media&token=efbb508b-4cce-432d-920c-50297f9565e6",
-            location: { x: 512, y: 134 },
+            location: { x: 1443, y: 1781 },
           },
           {
             name: "Dragon",
             imageURL:
               "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fcharacters%2Fwizard.png?alt=media&token=efbb508b-4cce-432d-920c-50297f9565e6",
-            location: { x: 512, y: 134 },
+            location: { x: 1267, y: 1140 },
           },
         ],
       },
@@ -86,19 +86,19 @@ const populateMaps = async () => {
             name: "Robot Sentinel",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-sentinel.141b234b60ab58570fd7.webp",
-            location: { x: 512, y: 134 },
+            location: { x: 735, y: 1543 },
           },
           {
-            name: "Robot Sentinel",
+            name: "Bender",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-sentinel.141b234b60ab58570fd7.webp",
-            location: { x: 512, y: 134 },
+            location: { x: 1197, y: 1260 },
           },
           {
-            name: "The Doof Warrior",
+            name: "Goku",
             imageURL:
               "https://alejandrovela-dev.github.io/robot-city/static/media/robot-thedoofwarrior.6e760ecfca88b77085a2.webp",
-            location: { x: 512, y: 134 },
+            location: { x: 1248, y: 1712 },
           },
         ],
       },
