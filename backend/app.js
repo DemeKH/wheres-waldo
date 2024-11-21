@@ -23,7 +23,7 @@ mongoose
     process.exit(1);
   });
 
-app.use("/api/map", mapRouter);
+app.use("/api/maps", mapRouter);
 
 app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);

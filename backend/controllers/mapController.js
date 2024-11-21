@@ -19,3 +19,17 @@ exports.getMapByPosition = async (req, res) => {
     res.status(500).json({ message: "Error retrieving map", error });
   }
 };
+
+exports.getAllMaps = async (req, res) => {
+  try {
+    const maps = await Map.find();
+
+    if (!maps) {
+      return res.status(404).json({ message: "Maps not found" });
+    }
+
+    res.status(200).json({ status: "success", maps });
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving map", error });
+  }
+};
