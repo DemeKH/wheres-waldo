@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 const mapRouter = require("./routes/mapRouter");
 const userRouter = require("./routes/userRouter");
 
@@ -10,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
 
 const DB = process.env.DB;
 

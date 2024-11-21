@@ -1,14 +1,21 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 import MapItem from "../src/components/MapItem";
 import HeaderHome from "../src/components/HeaderHome";
 
-const images = [
-  "https://spy-scout.vercel.app/images/universe11-infested.jpeg",
-  "https://firebasestorage.googleapis.com/v0/b/wheres-waldo-74fe1.appspot.com/o/game-1%2Fbackground%2Fdragon-charmers-island.webp?alt=media&token=9b698d26-a9ad-45c4-aa42-926ef9500de6",
-  "https://alejandrovela-dev.github.io/robot-city/static/media/main-robotcity.21aef22c39fb3661f853.webp",
-];
-
 const Home = () => {
+  const [maps, setMaps] = useState([]);
+
+  useEffect(() => {
+    async function getMaps() {
+      const res = await axiosInstance.get("http://localhost:3000/api/maps/");
+
+      setMaps(res.data.maps);
+    }
+    getMaps();
+  }, []);
+
   return (
     <>
       <HeaderHome />
@@ -17,13 +24,13 @@ const Home = () => {
         className="flex flex-col gap-5 p-5 justify-center items-center 
       lg:flex-row lg:justify-between lg:items-center"
       >
-        {images.map((img, index) => (
+        {maps.map((map, index) => (
           <Link
             to={`/game/${index + 1}`}
-            key={index}
+            key={map.id}
             className="w-full flex justify-center"
           >
-            <MapItem bgImage={img} />
+            <MapItem bgImage={map.imageURL} mapName={map.name} />
           </Link>
         ))}
       </div>
