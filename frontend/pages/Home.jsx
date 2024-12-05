@@ -1,21 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosInstance from "../utils/axiosInstance";
 import MapItem from "../src/components/MapItem";
 import HeaderHome from "../src/components/HeaderHome";
 
-const Home = () => {
-  const [maps, setMaps] = useState([]);
-
-  useEffect(() => {
-    async function getMaps() {
-      const res = await axiosInstance.get("http://localhost:3000/api/maps/");
-
-      setMaps(res.data.maps);
-    }
-    getMaps();
-  }, []);
-
+const Home = ({ maps }) => {
   return (
     <>
       <HeaderHome />

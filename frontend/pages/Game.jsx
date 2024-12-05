@@ -5,12 +5,27 @@ import BoxPopup from "../src/components/BoxPopup";
 import HeaderGame from "../src/components/HeaderGame";
 import SaveUser from "../src/components/SaveUser";
 
-function Game() {
-  let { id } = useParams();
-  const [map, setMap] = useState({});
+function Game({ maps }) {
+  const { id } = useParams();
+  const [map, setMap] = useState(maps[id - 1]);
   const [boxPosition, setBoxPosition] = useState(undefined);
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [timeInMS, settimeInMS] = useState(0);
+
+  useEffect(() => {
+    async function getMapById() {
+      try {
+        const res = await axiosInstance.get(`/api/maps/${id}`);
+        setMap(res.data.map);
+      } catch (error) {
+        console.error("Error fetching map data:", error);
+      }
+    }
+
+    if (!maps || maps.length === 0 || !map) {
+      getMapById();
+    }
+  }, [id, maps, map]);
 
   function guessCharacter(name) {
     const character = map.characters.filter(
@@ -32,9 +47,10 @@ function Game() {
 
   async function handleSave(username) {
     try {
-      await axiosInstance.post("http://localhost:3000/api/users/create-user", {
+      await axiosInstance.post("/api/users/create-user", {
         username,
         highscore: timeInMS,
+        mapId: id,
       });
       console.log("User saved successfully!");
     } catch (error) {
@@ -59,17 +75,8 @@ function Game() {
   }, [boxPosition]);
 
   useEffect(() => {
-    async function getMap() {
-      const res = await axiosInstance.get(
-        `http://localhost:3000/api/maps/${id}`
-      );
+    if (!map || !map.characters) return;
 
-      setMap(res.data.map);
-    }
-    getMap();
-  }, [id]);
-
-  useEffect(() => {
     const intervalID = setInterval(() => {
       settimeInMS((prev) => prev + 1000);
     }, 1000);
@@ -81,40 +88,43 @@ function Game() {
     return () => {
       clearInterval(intervalID);
     };
-  }, [correctGuesses, map.characters]);
+  }, [correctGuesses, map]);
 
-  return (
-    <>
-      <HeaderGame
-        characters={map.characters}
-        timeInMS={timeInMS}
-        correctGuesses={correctGuesses}
-      />
-      <div className="relative overflow-auto max-w-screen">
-        <div
-          className="flex justify-center md:justify-between gap-4 
+  if (map) {
+    return (
+      <>
+        <HeaderGame
+          characters={map.characters}
+          timeInMS={timeInMS}
+          correctGuesses={correctGuesses}
+        />
+        <div className="relative overflow-auto max-w-screen">
+          <div
+            className="flex justify-center md:justify-between gap-4 
         md:top-10 flex-wrap md:flex-row right-0 z-20 md:z-40"
-        >
-          <img
-            src={`${map.imageURL}`}
-            className="w-auto h-auto object-cover mt-16"
-            alt={`Game ${id} Image`}
-          />
+          >
+            <img
+              src={`${map.imageURL}`}
+              className="w-auto h-auto object-cover mt-16"
+              alt={`Game ${id} Image`}
+            />
+          </div>
+          {boxPosition &&
+            correctGuesses?.length !== map?.characters?.length && (
+              <BoxPopup
+                boxPosition={boxPosition}
+                characters={map.characters}
+                guessCharacter={guessCharacter}
+                correctGuesses={correctGuesses}
+              />
+            )}
+          {correctGuesses?.length === map?.characters?.length && (
+            <SaveUser timeInMS={timeInMS} handleSave={handleSave} />
+          )}
         </div>
-        {boxPosition && correctGuesses?.length !== map?.characters?.length && (
-          <BoxPopup
-            boxPosition={boxPosition}
-            characters={map.characters}
-            guessCharacter={guessCharacter}
-            correctGuesses={correctGuesses}
-          />
-        )}
-        {correctGuesses?.length === map?.characters?.length && (
-          <SaveUser timeInMS={timeInMS} handleSave={handleSave} />
-        )}
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default Game;
