@@ -22,7 +22,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home maps={maps} />} />
-          <Route path="/leaderboards" element={<Leaderboard maps={maps} />} />
+          <Route path="/leaderboard" element={<Leaderboard maps={maps} />} />
           <Route path="/game/:id" element={<Game maps={maps} />} />
         </Routes>
       </Router>

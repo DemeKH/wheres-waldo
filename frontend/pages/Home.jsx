@@ -16,6 +16,8 @@ const Home = ({ maps }) => {
             to={`/game/${index + 1}`}
             key={index}
             className="w-full flex justify-center"
+            // stopPropagation to fix Game page having boxPopup on initial load
+            onClick={(e) => e.stopPropagation()}
           >
             <MapItem bgImage={map.imageURL} mapName={map.name} key={index} />
           </Link>
