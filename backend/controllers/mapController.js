@@ -33,3 +33,42 @@ exports.getAllMaps = async (req, res) => {
     res.status(500).json({ message: "Error retrieving map", error });
   }
 };
+
+exports.saveHighscore = async (req, res) => {
+  try {
+    const map = await Map.findOne({ name: req.body.mapName });
+
+    if (!map) {
+      return res.status(404).json({ message: "Map not found" });
+    }
+
+    console.log("Map Retrieved:", map); // Debug the retrieved map
+
+    // Check if highscores exists
+    if (!map.highscores) {
+      console.log("Highscores field is undefined, initializing...");
+      map.highscores = [];
+    }
+
+    // Add new highscore
+    const newHighscore = {
+      username: req.body.username,
+      highscore: req.body.highscore,
+    };
+
+    map.highscores.push(newHighscore);
+
+    map.highscores.sort((a, b) => a.highscore - b.highscore);
+    map.highscores = map.highscores.slice(0, 10);
+
+    await map.save();
+
+    res.status(200).json({
+      message: "Highscore saved successfully",
+      highscores: map.highscores,
+    });
+  } catch (error) {
+    console.error("Error saving highscore:", error);
+    res.status(500).json({ message: "Error saving highscore", error });
+  }
+};

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import BoxPopup from "../src/components/BoxPopup";
@@ -6,6 +6,7 @@ import HeaderGame from "../src/components/HeaderGame";
 import SaveUser from "../src/components/SaveUser";
 
 function Game({ maps }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [map, setMap] = useState(maps[id - 1]);
   const [boxPosition, setBoxPosition] = useState(undefined);
@@ -47,12 +48,13 @@ function Game({ maps }) {
 
   async function handleSave(username) {
     try {
-      await axiosInstance.post("/api/users/create-user", {
+      await axiosInstance.post("/api/maps/save-highscore", {
         username,
         highscore: timeInMS,
-        mapId: id,
+        mapName: map.name,
       });
       console.log("User saved successfully!");
+      navigate("/leaderboard");
     } catch (error) {
       console.error("Error saving user:", error);
     }

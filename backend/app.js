@@ -27,7 +27,6 @@ mongoose
     process.exit(1);
   });
 
-app.use("/api/users", userRouter);
 app.use("/api/maps", mapRouter);
 
 app.listen(PORT, () => {
