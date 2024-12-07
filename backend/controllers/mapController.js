@@ -34,6 +34,31 @@ exports.getAllMaps = async (req, res) => {
   }
 };
 
+exports.getLeaderboard = async (req, res) => {
+  try {
+    const mapName = req.params.mapName;
+    const map = await Map.findOne({ name: mapName });
+
+    if (!map) {
+      return res.status(404).json({ message: "Map not found" });
+    }
+
+    if (!map.highscores) {
+      map.highscores = [];
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        leaderboard: map.highscores,
+      },
+    });
+  } catch (err) {
+    console.error("Error fetching leaderboard:", err);
+    res.status(500).json({ message: "Error fetching leaderboard", error: err });
+  }
+};
+
 exports.saveHighscore = async (req, res) => {
   try {
     const map = await Map.findOne({ name: req.body.mapName });
@@ -42,15 +67,11 @@ exports.saveHighscore = async (req, res) => {
       return res.status(404).json({ message: "Map not found" });
     }
 
-    console.log("Map Retrieved:", map); // Debug the retrieved map
-
-    // Check if highscores exists
     if (!map.highscores) {
       console.log("Highscores field is undefined, initializing...");
       map.highscores = [];
     }
 
-    // Add new highscore
     const newHighscore = {
       username: req.body.username,
       highscore: req.body.highscore,

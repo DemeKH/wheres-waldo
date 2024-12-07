@@ -53,7 +53,6 @@ function Game({ maps }) {
         highscore: timeInMS,
         mapName: map.name,
       });
-      console.log("User saved successfully!");
       navigate("/leaderboard");
     } catch (error) {
       console.error("Error saving user:", error);

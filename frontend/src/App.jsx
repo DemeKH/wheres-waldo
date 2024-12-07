@@ -23,6 +23,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home maps={maps} />} />
           <Route path="/leaderboard" element={<Leaderboard maps={maps} />} />
+          <Route
+            path="/leaderboard/:mapName"
+            element={<Leaderboard maps={maps} />}
+          />
           <Route path="/game/:id" element={<Game maps={maps} />} />
         </Routes>
       </Router>

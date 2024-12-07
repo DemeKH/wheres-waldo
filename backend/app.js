@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const mapRouter = require("./routes/mapRouter");
-const userRouter = require("./routes/userRouter");
 
 dotenv.config();
 const app = express();
@@ -12,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const DB = process.env.DB;

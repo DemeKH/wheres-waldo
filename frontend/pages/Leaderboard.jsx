@@ -16,13 +16,16 @@ const Leaderboard = ({ maps }) => {
   return (
     <>
       <HeaderHome />
-      <h1 className="text-center text-2xl font-semibold">Choose a Map</h1>
+      <h1 className="text-center text-2xl font-semibold">
+        Choose a Map leaderboard
+      </h1>
       <div
         className="flex flex-col gap-5 p-5 justify-center items-center 
         lg:flex-row lg:justify-between lg:items-center"
       >
         {maps.map((map, index) => (
           <Link
+            to={`/leaderboard/${map.name}`}
             key={index}
             className="w-full flex justify-center"
             onClick={() => openModal(index)}
