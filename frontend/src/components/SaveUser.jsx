@@ -15,9 +15,12 @@ const SaveUser = ({ timeInMS, handleSave }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-gray-800 rounded-md p-4 flex flex-col justify-center items-center gap-3">
-        <h1 className="text-xl text-white bg-black w-full text-center p-2">
+      <div className="bg-gray-800 rounded-md p-6 flex flex-col justify-center items-center gap-3">
+        <h1 className="text-2xl text-white w-full text-center">
           Congrats, You finished in {formatTime(timeInMS)}
+        </h1>
+        <h1 className="text-xl text-white w-full text-center">
+          Save your score!!!
         </h1>
         <form
           action=""
