@@ -12,17 +12,19 @@ function formatTime(ms) {
 
 const HeaderGame = ({ characters = [], timeInMS, correctGuesses }) => {
   return (
-    <div className="flex justify-between items-center p-3.5 bg-gray-800 fixed z-10 w-full">
-      <Link to="/">
+    <div className="flex justify-between items-center fixed p-3.5 bg-gray-800 z-10 w-full">
+      <Link to="/" className="hidden sm:block mr-3">
         <h1 className="text-2xl text-white font-semibold">
           Where&apos;s Waldo
         </h1>
       </Link>
-      <h1 className="text-xl text-white font-medium">{formatTime(timeInMS)}</h1>
-      <div className="flex gap-3">
+      <h1 className="text-lg md:text-xl text-white font-medium">
+        {formatTime(timeInMS)}
+      </h1>
+      <div className="flex gap-2">
         {characters.map((character, index) => (
           <div
-            className="flex justify-center items-center gap-1 rounded-md p-1"
+            className="flex justify-center items-center md:gap-1 rounded-md p-1 "
             key={index}
             style={{
               backgroundColor: correctGuesses.includes(character.name)
@@ -32,9 +34,9 @@ const HeaderGame = ({ characters = [], timeInMS, correctGuesses }) => {
           >
             <img
               src={character?.imageURL}
-              className="w-10 h-10 rounded-lg m-1 hover:scale-110 ease-in-out duration-100"
+              className="w-7 h-7 md:w-10 md:h-10 rounded-lg m-1 hover:scale-110 ease-in-out duration-100"
             />
-            <h1 className="text-xl text-white font-medium">
+            <h1 className="text-sm md:text-lg text-white font-medium">
               {character?.name}
             </h1>
           </div>

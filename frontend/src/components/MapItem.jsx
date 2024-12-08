@@ -12,7 +12,10 @@ const MapItem = ({ bgImage, mapName, handleClick }) => {
       style={{ backgroundImage: `url('${bgImage}')` }}
       onClick={handleClick}
     >
-      <h1 className="text-white font-semibold text-3xl" style={textStyle}>
+      <h1
+        className="text-white text-center font-semibold text-3xl"
+        style={textStyle}
+      >
         {mapName}
       </h1>
     </div>

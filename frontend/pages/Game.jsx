@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import BoxPopup from "../src/components/BoxPopup";
 import HeaderGame from "../src/components/HeaderGame";
@@ -12,6 +12,8 @@ function Game({ maps }) {
   const [boxPosition, setBoxPosition] = useState(undefined);
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [timeInMS, settimeInMS] = useState(0);
+
+  const imageRef = useRef(null);
 
   useEffect(() => {
     async function getMapById() {
@@ -33,12 +35,19 @@ function Game({ maps }) {
       (character) => character.name === name
     );
 
-    const { x, y } = character[0].location;
+    // const { x, y } = character[0].location;
+    const imageWidth = imageRef.current.getBoundingClientRect().width;
+    const imageHeight = imageRef.current.getBoundingClientRect().height;
+    console.log(imageWidth, imageHeight);
+    const x = (character[0].location.x / 1920) * imageWidth;
+    const y = (character[0].location.y / 2710) * imageHeight + 30;
+    console.log(x, y);
+
     if (
-      boxPosition.x > x + 20 ||
-      boxPosition.x < x - 20 ||
-      boxPosition.y > y + 20 ||
-      boxPosition.y < y - 20
+      boxPosition.x > x + 30 ||
+      boxPosition.x < x - 30 ||
+      boxPosition.y > y + 30 ||
+      boxPosition.y < y - 30
     ) {
       return;
     } else {
@@ -65,6 +74,7 @@ function Game({ maps }) {
         setBoxPosition(undefined);
       } else {
         setBoxPosition({ x: e.layerX, y: e.layerY });
+        console.log(e.layerX, e.layerY);
       }
     };
 
@@ -93,37 +103,39 @@ function Game({ maps }) {
 
   if (map) {
     return (
-      <>
+      <div className="bg-inherit flex flex-col h-full">
         <HeaderGame
           characters={map.characters}
           timeInMS={timeInMS}
           correctGuesses={correctGuesses}
         />
-        <div className="relative overflow-auto max-w-screen">
-          <div
-            className="flex justify-center md:justify-between gap-4 
-        md:top-10 flex-wrap md:flex-row right-0 z-20 md:z-40"
-          >
+        <main style={{ flexGrow: "1" }}>
+          <div className="relative overflow-hidden flex justify-center">
             <img
+              ref={imageRef}
               src={`${map.imageURL}`}
-              className="w-auto h-auto object-cover mt-16"
+              className="mt-16 cursor-crosshair max-w-full"
               alt={`Game ${id} Image`}
             />
-          </div>
-          {boxPosition &&
-            correctGuesses?.length !== map?.characters?.length && (
-              <BoxPopup
-                boxPosition={boxPosition}
-                characters={map.characters}
-                guessCharacter={guessCharacter}
-                correctGuesses={correctGuesses}
-              />
+
+            {boxPosition &&
+              correctGuesses?.length !== map?.characters?.length && (
+                <BoxPopup
+                  boxPosition={boxPosition}
+                  characters={map.characters}
+                  guessCharacter={guessCharacter}
+                  correctGuesses={correctGuesses}
+                />
+              )}
+            {correctGuesses?.length === map?.characters?.length && (
+              <SaveUser timeInMS={timeInMS} handleSave={handleSave} />
             )}
-          {correctGuesses?.length === map?.characters?.length && (
-            <SaveUser timeInMS={timeInMS} handleSave={handleSave} />
-          )}
-        </div>
-      </>
+          </div>
+        </main>
+        <footer className="w-full flex justify-center h-[50px] p-4 bg-gray-800 text-white text-xl self-end">
+          GitHub: DemeKH
+        </footer>
+      </div>
     );
   }
 }
